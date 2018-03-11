@@ -1,0 +1,30 @@
+{
+    "name": "OpenCT",
+    "description": "开源课程表",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "options_page": "options.html",
+    "browser_action": {
+        "default_icon": "openct.png",
+        "default_title": "课表插件",
+        "popup": "popup.html"
+    },
+
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["scripts/content_script.js"],
+        "run_at": "document_idle",
+        "all_frames": true
+    }],
+    "background": {
+        "scripts": [
+            "scripts/background.js",
+            "scripts/ical.min.js"
+        ],
+        "persistent": false
+    },
+
+    "permissions": [
+        "downloads", "storage", "activeTab", "tabs", "http://*/*", "https://*/*"
+    ]
+}
